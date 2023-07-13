@@ -22,13 +22,29 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3];
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5];
 
-
+const check = [4, 5, 3, 9, 6, 8, 9, 8, 8, 7, 7, 0, 5, 7, 9, 8];
 // Add your functions below:
+function validateCred(arr){
+    let sum = arr[arr.length-1];
+    // uses Luhn algorithm to determine card validity
+    for(let i = arr.length-2; i >= 0; i--){
+        if(i % 2 === 0){
+            if((arr[i] * 2) > 9){
+                sum += (arr[i] * 2) - 9;
+            }
+            else{
+                sum += arr[i] * 2;
+            }
+        }
+        else{
+            sum += arr[i];
+        }
+    }
+    if(sum % 10 === 0){
+        return true;
+    }
+    return false;
+}
 
-
-
-
-
-
-
-
+console.log(validateCred(check));
+console.log('check arr not mutated: ', check);
