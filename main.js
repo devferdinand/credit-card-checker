@@ -76,5 +76,39 @@ function findInvalidCards(arr){
     return invalidCard;
 }
 
+function idInvalidCardCompanies(arr){
+    // starting card number is 3 for amex, 4 for visa, 5 for mastercard, 6 for discover
+    // anything else company does not exist
+    let companyArr = [];
+    
+    for(let i = 0; i < arr.length; i++){
+        switch(arr[i][0]){
+            case 3:
+                if(companyArr.indexOf('Amex') === -1){
+                    companyArr.push('Amex');
+                }
+                break;
+            case 4:
+                if(companyArr.indexOf('Visa') === -1){
+                    companyArr.push('Visa');
+                }
+                break;
+            case 5:
+                if(companyArr.indexOf('Mastercard') === -1){
+                    companyArr.push('Mastercard');
+                }
+                break;
+            case 6:
+                if(companyArr.indexOf('Discover') === -1){
+                    companyArr.push('Discover');
+                }
+                break;
+            default:
+                console.log('Company not found');
+        }
+    }
+    return companyArr;
+}
 
 console.log(findInvalidCards(batch)); // mystery1, mystery3, mystery4, and all invalid should print
+console.log(idInvalidCardCompanies(findInvalidCards(batch))); // visa, mastercard, amex, discover should print
